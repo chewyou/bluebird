@@ -1,44 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setup
 
-## Available Scripts
+`npm i`
 
-In the project directory, you can run:
+`amplify configure`
 
-### `npm start`
+Sign into root AWS account, return to the terminal and press Enter
+
+Run through the configuration script:
+- region
+- new IAM user name
+
+Complete user creation in browser (give admin permissions)
+
+You may want to download the .csv file with the Access key ID and Secret access key
+
+When you are on the Success page, press enter in the terminal and continue the configuration.
+- access key id
+- secret access key
+- profile name (use default)
+
+`amplify init`
+
+Run through this configuration script
+- choose default editor
+- type of app - javascript
+- javascript framework - react
+- source directory path - src
+- distribution directory path - build
+- build command - default
+- start command - default
+- use an AWS profile - yes
+- choose profile - default
+
+Amplify will then go and set up the project in the cloud
+
+
+`amplify add hosting`
+
+- environment - DEV
+- s3 bucket name
+- index doc for the website - index.html
+- error doc for the website - index.html
+
+`amplify add auth`
+
+Select default configuration
+
+`amplify add analytics`
+
+Select the default options
+
+`amplify add storage`
+
+- Select Content
+- resource name - bluebird
+- s3 bucket name - bluebird-storage
+- access to Auth and guest users
+- Auth users have Read/Write access
+- Guest users have read access
+
+
+`amplify publish`
+
+Continue = yes
+
+
+## To run locally
+`npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
+The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `npm test`
+## To publish to AWS
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`amplify publish`
