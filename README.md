@@ -60,7 +60,7 @@ Select the default options
 - Guest users have read access
 
 
-`amplify publish`
+`amplify push`
 
 Continue = yes
 
@@ -73,6 +73,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.
 You will also see any lint errors in the console.
+
+
+## To remove amplify feature
+
+`amplify remove [hosting|storage|auth|analytics]`
+
+
+## To push amplify changes to AWS
+
+`amplify push`
+
 
 ## To publish to AWS
 
