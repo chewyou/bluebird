@@ -68,12 +68,17 @@ input[type="file"] {
   height: inherit;
 }
 
-.s3album ul li {
-  display: inline-block;
-  height: 200px;
+.s3album ul {
+  padding: 0;
 }
 
-.s3album ul li p {
+.s3album ul li {
+  display: block;
+  border-bottom: 1px solid #ff9f0e;
+  padding: 5px;
+}
+
+.file {
   padding: 0 0 0 20px;
   color: #999999;
   text-transform: capitalize;

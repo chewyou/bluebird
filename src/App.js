@@ -1,12 +1,15 @@
+// https://devhints.io/react
+
 import React, {Component} from 'react';
 import './App.css';
 import Amplify, {Analytics, Storage} from 'aws-amplify';
-import {withAuthenticator, S3Image} from 'aws-amplify-react';
+import {withAuthenticator} from 'aws-amplify-react';
 import aws_exports from './aws-exports';
+import ReactDOM from 'react-dom';
 
 // Configurations
 Amplify.configure(aws_exports);
-Storage.configure({level: 'private'});
+Storage.configure({level: 'public'});
 
 
 class Header extends Component {
@@ -28,12 +31,28 @@ class Album extends Component {
     }
 
     componentDidMount() {
-         Storage.list('', {level: 'private'})
+        Storage.list('', {level: 'public'})
             .then(result => {
-                console.log(result);
+
+                let list = Array.from(result);
+
                 this.setState({
-                    data: Array.from(result)
-                })
+                    data: list
+                });
+            })
+            .catch(err => console.log(err));
+    }
+
+    getURL(key) {
+        Storage.get(key)
+            .then(result => {
+                const element = (
+                    <div>
+                        <div>{result}</div>
+                        <a href={result}>(Download)</a>
+                    </div>
+                );
+                ReactDOM.render(element, document.getElementById(key))
             })
             .catch(err => console.log(err));
     }
@@ -44,8 +63,10 @@ class Album extends Component {
                 <ul>
                     {this.state.data.map(item =>
                         <li key={item.key}>
-                            <S3Image level="private" imgKey={item.key} />
-                            <p>{item.key.replace('.jpg', '').replace('.jpeg', '').replace('-', ' ')}</p>
+                            <div className='file'>
+                                {item.key.replace('.jpg', '').replace('.jpeg', '').replace('-', ' ')}
+                                <p id={item.key} onLoad={this.getURL(item.key)}> </p>
+                            </div>
                         </li>
                     )}
                 </ul>
@@ -71,7 +92,7 @@ class Body extends Component {
     render() {
         return (
             <div className="body">
-                <div className="small-title">Your Images</div>
+                <div className="small-title">Files</div>
                 <label htmlFor="file-upload" className="file-upload">
                     Upload a file
                 </label>
