@@ -6,6 +6,8 @@ import Amplify, {Analytics, Storage} from 'aws-amplify';
 import {withAuthenticator} from 'aws-amplify-react';
 import aws_exports from './aws-exports';
 import ReactDOM from 'react-dom';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 
 // Configurations
 Amplify.configure(aws_exports);
@@ -33,11 +35,8 @@ class Album extends Component {
     componentDidMount() {
         Storage.list('', {level: 'public'})
             .then(result => {
-
-                let list = Array.from(result);
-
                 this.setState({
-                    data: list
+                    data: Array.from(result)
                 });
             })
             .catch(err => console.log(err));
@@ -48,8 +47,10 @@ class Album extends Component {
             .then(result => {
                 const element = (
                     <div>
-                        <div>{result}</div>
-                        <a href={result}>(Download)</a>
+                        <CopyToClipboard text={result} >
+                            <div className='copyurl'>Copy URL</div>
+                        </CopyToClipboard>
+                        <a className='downloadfile' href={result}>Download File</a>
                     </div>
                 );
                 ReactDOM.render(element, document.getElementById(key))
@@ -63,10 +64,8 @@ class Album extends Component {
                 <ul>
                     {this.state.data.map(item =>
                         <li key={item.key}>
-                            <div className='file'>
-                                {item.key.replace('.jpg', '').replace('.jpeg', '').replace('-', ' ')}
-                                <p id={item.key} onLoad={this.getURL(item.key)}> </p>
-                            </div>
+                            <div className='filename'>{item.key}</div>
+                            <div className='fileurl' id={item.key} onLoad={this.getURL(item.key)}> </div>
                         </li>
                     )}
                 </ul>

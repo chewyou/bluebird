@@ -75,11 +75,34 @@ input[type="file"] {
 .s3album ul li {
   display: block;
   border-bottom: 1px solid #ff9f0e;
-  padding: 5px;
+  padding: 10px 5px 10px 5px;
 }
 
-.file {
-  padding: 0 0 0 20px;
+.filename {
   color: #999999;
   text-transform: capitalize;
+  display: inline-block;
+  padding: 0 10px 0 0;
+}
+
+.copyurl {
+  color: #de890b;
+  display: inline-block;
+  padding: 0 10px;
+  text-decoration: underline;
+}
+
+.copyurl:hover {
+  color: #ff9f0e;
+  cursor: pointer;
+}
+
+.downloadfile {
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.downloadfile:hover {
+  color: #ff9f0e;
+  cursor: pointer;
 }
