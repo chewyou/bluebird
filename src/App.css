@@ -111,6 +111,7 @@ input[type="file"] {
   display: inline-block;
   padding: 0 10px;
   float: right;
+  font-size: 10px;
 }
 
 .deletefile:hover {
