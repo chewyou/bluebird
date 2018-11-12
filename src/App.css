@@ -106,3 +106,14 @@ input[type="file"] {
   color: #ff9f0e;
   cursor: pointer;
 }
+
+.deletefile {
+  display: inline-block;
+  padding: 0 10px;
+  float: right;
+}
+
+.deletefile:hover {
+  color: #ff9f0e;
+  cursor: pointer;
+}

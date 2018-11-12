@@ -42,6 +42,23 @@ class Album extends Component {
             .catch(err => console.log(err));
     }
 
+    deleteFile(key, e) {
+        console.log(key);
+        Storage.remove(key)
+            .then(result => {
+                console.log(result);
+                const refresh = (
+                    <div>
+                        <Header/>
+                        <Body />
+                    </div>
+                );
+
+                ReactDOM.render(refresh, document.getElementById('bluebirdbody'));
+            })
+            .catch(err => console.log(err));
+    }
+
     getURL(key) {
         Storage.get(key)
             .then(result => {
@@ -51,6 +68,7 @@ class Album extends Component {
                             <div className='copyurl'>Copy URL</div>
                         </CopyToClipboard>
                         <a className='downloadfile' href={result}>Download File</a>
+                        <a className='deletefile' onClick={e => this.deleteFile(key, e)}>Delete File</a>
                     </div>
                 );
                 ReactDOM.render(element, document.getElementById(key))
@@ -65,7 +83,7 @@ class Album extends Component {
                     {this.state.data.map(item =>
                         <li key={item.key}>
                             <div className='filename'>{item.key}</div>
-                            <div className='fileurl' id={item.key} onLoad={this.getURL(item.key)}> </div>
+                            <div className='fileoptions' id={item.key} onLoad={this.getURL(item.key)}> </div>
                         </li>
                     )}
                 </ul>
@@ -81,7 +99,16 @@ class Body extends Component {
 
         Storage.put(name, file).then(() => {
             this.setState({file: name});
-        })
+        });
+
+        const refresh = (
+            <div>
+                <Header/>
+                <Body />
+            </div>
+        );
+
+        ReactDOM.render(refresh, document.getElementById('bluebirdbody'));
     };
 
     componentDidMount() {
@@ -90,7 +117,7 @@ class Body extends Component {
 
     render() {
         return (
-            <div className="body">
+            <div className="body" id='bluebirdbody'>
                 <div className="small-title">Files</div>
                 <label htmlFor="file-upload" className="file-upload">
                     Upload a file
@@ -105,9 +132,9 @@ class Body extends Component {
 class App extends Component {
     render() {
         return (
-            <div className="bluebird">
+            <div className="bluebird" id='bluebirdbody'>
                 <Header/>
-                <Body/>
+                <Body />
             </div>
         );
     }
