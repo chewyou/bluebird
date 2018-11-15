@@ -130,8 +130,8 @@ class Body extends Component {
                     <p>- Refresh Album after upload had finished</p>
                     <p>- Fix one or more delete refresh issue</p>
                     <p>- Public and private file uploads</p>
-                    <p>- </p>
-
+                    <p>- User feedback stating that a URL has been copied when CopyURL has been clicked</p>
+                    <p>- An 'Are you sure?' message before deleting a file</p>
                 </div>
             </div>
         )
