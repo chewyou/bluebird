@@ -124,6 +124,15 @@ class Body extends Component {
                 </label>
                 <input id="file-upload" type="file" onChange={this.uploadFile}/>
                 <Album/>
+                <div>
+                    <p>To Do:</p>
+                    <p>- User feedback for uploads so they know the progress of an upload</p>
+                    <p>- Refresh Album after upload had finished</p>
+                    <p>- Fix one or more delete refresh issue</p>
+                    <p>- Public and private file uploads</p>
+                    <p>- </p>
+
+                </div>
             </div>
         )
     }
